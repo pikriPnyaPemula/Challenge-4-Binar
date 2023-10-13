@@ -1,0 +1,19 @@
+### Membuat User beserta dengan Profile nya
+POST http://localhost:3000/api/v1/users
+Content-Type: application/json
+
+{
+    "name": "caca",
+    "email": "caca9@mail.com",
+    "password": "caca123",
+    "identity_type": "female",
+    "identity_number": 112292,
+    "address": "Bandung"
+}
+
+### Menampilkan Semua User dengan Pagination
+GET http://localhost:3000/api/v1/users?limit=5&page=2
+Content-Type: application/json
+
+###
+GET http://localhost:3000/api/v1/users/10
