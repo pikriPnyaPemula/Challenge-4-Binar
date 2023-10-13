@@ -3,17 +3,54 @@ POST http://localhost:3000/api/v1/users
 Content-Type: application/json
 
 {
-    "name": "caca",
-    "email": "caca9@mail.com",
-    "password": "caca123",
-    "identity_type": "female",
-    "identity_number": 112292,
-    "address": "Bandung"
+    "name": "zaki",
+    "email": "zaki@mail.com",
+    "password": "zaki123",
+    "identity_type": "male",
+    "identity_number": 920361,
+    "address": "Bekasi"
 }
 
 ### Menampilkan Semua User dengan Pagination
-GET http://localhost:3000/api/v1/users?limit=5&page=2
+GET http://localhost:3000/api/v1/users?limit=15&page=1
 Content-Type: application/json
 
-###
-GET http://localhost:3000/api/v1/users/10
+### Menampilkan Detail User dengan ID
+GET http://localhost:3000/api/v1/users/1
+
+
+
+### Membuat Akun Baru dengan User yang sudah terdaftar
+POST http://localhost:3000/api/v1/accounts
+Content-Type: application/json
+
+{
+    "bank_name": "Sinarmas",
+    "bank_account_number": 701752692,
+    "balance": 6000000,
+    "user_id": 17
+}
+
+### Menampilkan Semua Akun
+GET http://localhost:3000/api/v1/account?limit=20&page=1
+
+### Menampilkan detail Akun beserta User dan Profilenya
+GET http://localhost:3000/api/v1/account/17
+
+
+
+### Membuat Transaksi
+POST http://localhost:3000/api/v1/transaction
+Content-Type: application/json
+
+{
+  "source_account_id": 11,
+  "destination_account_id": 8,
+  "amount": 10000
+}
+
+### Menampilkan Semua Transaction
+GET http://localhost:3000/api/v1/transaction?limit=20&page=1
+
+### Menampilkan detail Transaction
+GET http://localhost:3000/api/v1/transaction/1

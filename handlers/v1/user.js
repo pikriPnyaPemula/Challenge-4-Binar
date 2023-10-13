@@ -44,7 +44,7 @@ module.exports = {
 
             let user = await prisma.users.findMany({
                 skip: (page-1) * limit,
-                take: limit,
+                take: limit
             });
             const {_count} = await prisma.users.aggregate({
                 _count: {id: true}
@@ -53,7 +53,7 @@ module.exports = {
             let pagination = getPagination(req, _count.id, page, limit);
             res.status(200).json({
                 status: true,
-                message: 'OK',
+                message: 'Show All User',
                 data: {pagination, user}
             });
         } catch(err){
@@ -82,5 +82,5 @@ module.exports = {
         } catch (err){
             next(err);
         }
-    },
+    }
 };
