@@ -27,7 +27,8 @@ module.exports = {
                 });
             }
 
-            let newTransaction = await prisma.Transaction.create({
+            let newTransaction = await prisma.transactions.create({
+
                 data: {
                     source_account_id : source_account_id,
                     destination_account_id: destination_account_id,
@@ -70,11 +71,11 @@ module.exports = {
             limit = Number(limit);
             page = Number(page);
 
-            let transactions = await prisma.Transaction.findMany({
+            let transactions = await prisma.transactions.findMany({
                 skip: (page-1) * limit,
                 take: limit
             });
-            const {_count} = await prisma.Transaction.aggregate ({
+            const {_count} = await prisma.transactions.aggregate ({
                 _count: {id: true}
             });
 
@@ -86,15 +87,16 @@ module.exports = {
             })
         } catch (err) {
             next(err);
+            console.log(errr);
         }
     },
 
     getTransactionDetail: async (req, res, next) => {
         try{
             let {id} = req.params;
-            let transactions = await prisma.Transaction.findUnique({where: {id: Number(id)}});
+            let transactions = await prisma.transactions.findUnique({where: {id: Number(id)}});
 
-            if (!user) {
+            if (!transactions) {
                 return req.status(400).json({
                     status: false,
                     message: 'Bad Request',
